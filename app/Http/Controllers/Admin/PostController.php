@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -84,9 +85,23 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $post)
     {
         $old_title = $post->title;
+
         $data = $request->validated();
+        // $post->category = $data['category'];
         $post->slug = Str::slug($data['title']);
         $post->update($data);
+
+        // if ( isset($data['cover_image']) ) {
+        //     if( $post->cover_image ) {
+        //         Storage::delete($post->cover_image);
+        //     }
+        //     $data['cover_image'] = Storage::put('uploads', $data['cover_image']);
+        // }
+
+        // if( isset($data['no_image']) && $post->cover_image  ) {
+        //     Storage::delete($post->cover_image);
+        //     $post->cover_image = null;
+        // }
 
         return redirect()->route('admin.posts.index')->with('message', "Il post $old_title è stato aggiornato");
     }
