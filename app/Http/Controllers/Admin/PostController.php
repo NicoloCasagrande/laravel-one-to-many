@@ -8,6 +8,7 @@ use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -32,7 +33,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -48,6 +50,10 @@ class PostController extends Controller
         $new_post->fill($data);
         $new_post->slug = Str::slug($new_post->title);
         $new_post->save();
+
+        if(isset($data['tags'])){
+            $new_post->tags()->sync($data['tags']);
+        }
 
         return redirect()->route('admin.posts.index')->with('message', 'Post creato con successo!');
     }
