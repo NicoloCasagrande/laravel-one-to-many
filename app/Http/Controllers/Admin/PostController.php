@@ -77,8 +77,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        $tags = Tag::all();
         $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -96,6 +97,10 @@ class PostController extends Controller
         // $post->category = $data['category'];
         $post->slug = Str::slug($data['title']);
         $post->update($data);
+
+        if(isset($data['tags'])){
+            $post->tags()->sync($data['tags']);
+        }
 
         // if ( isset($data['cover_image']) ) {
         //     if( $post->cover_image ) {

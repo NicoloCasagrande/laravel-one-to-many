@@ -29,7 +29,7 @@ class UpdatePostRequest extends FormRequest
             'content' => 'required|string', 
             'cover_image' => 'nullable|image!max:2048',
             'category_id' => 'nullable|exists:categories,id', 
-            'tags' => 'nullable|exits:tags,id'
+            'tags' => 'nullable|exists:tags,id'
         ];
     }
 }
