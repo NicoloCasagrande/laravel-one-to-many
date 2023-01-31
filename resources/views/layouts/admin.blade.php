@@ -107,7 +107,7 @@
                       class="nav-link text-white {{ Route::currentRouteName() == 'admin.categories.index' ? 'bg-secondary' : '' }}"
                       href="{{route('admin.categories.index')}}"
                     >
-                      <i class="fa-solid fa-paperclip fa-lg fa-fw"></i>
+                    <i class="fa-solid fa-filter fa-lg fa-fw"></i>
                       Categories
                     </a>
                   </li>
