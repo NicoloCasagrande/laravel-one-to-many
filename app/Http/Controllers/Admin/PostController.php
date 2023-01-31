@@ -100,6 +100,8 @@ class PostController extends Controller
 
         if(isset($data['tags'])){
             $post->tags()->sync($data['tags']);
+        }else{
+            $post->tags()->sync([]);
         }
 
         // if ( isset($data['cover_image']) ) {
