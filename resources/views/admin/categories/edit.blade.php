@@ -12,12 +12,12 @@
       </div>
     @endif
     <div>
-        <form action="{{route('admin.categories.update')}}" method="POST">
+        <form action="{{route('admin.categories.update', $category)}}" method="POST">
             @csrf
             @method('PUT')
             <div class="mb-3">
                 <label for="name" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il nome della categoria" value="{{old($category->name,'name')}}">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Inserisci il nome della categoria" value="{{$category->name}}">
             </div>
             <button type="submit" class="btn btn-success">Conferma</button>
         </form>

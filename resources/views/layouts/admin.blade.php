@@ -111,6 +111,15 @@
                       Categories
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a
+                      class="nav-link text-white {{ Route::currentRouteName() == 'admin.tags.index' ? 'bg-secondary' : '' }}"
+                      href="{{route('admin.tags.index')}}"
+                    >
+                    <i class="fa-solid fa-tag fa-lg fa-fw"></i>
+                      Tags
+                    </a>
+                  </li>
               </ul>
             </div>
           </nav>
