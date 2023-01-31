@@ -6,7 +6,7 @@
     <h3>{{$category->slug}}</h3>
     <ul>
         @foreach ( $category->posts as $post )
-            <li>{{$post->title}}</li>
+            <li><a href="{{route('admin.posts.show', $post)}}">{{$post->title}}</a></li>
         @endforeach
     </ul>
     <div>
