@@ -11,7 +11,11 @@
     </ul>
     <div>
         <a href="{{route('admin.categories.edit', $category)}}" class="btn btn-warning my-1 d-inline-block">Modifica</a>
-        <a href="#" class="btn btn-danger my-1">Elimina</a>
+        <form action="{{route('admin.categories.destroy', $category)}}" method="POST" class="d-inline">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Elimina</button>
+        </form>
     </div>
     <a href="{{route('admin.categories.index')}}" class="btn btn-primary my-1">Torna alla Lista</a>
 @endsection

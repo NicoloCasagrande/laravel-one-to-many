@@ -46,7 +46,7 @@ class CategoryController extends Controller
         $new_category->slug = Str::slug($new_category->name);
         $new_category->save();
 
-        return redirect()->route('admin.categories.index')->with('message', 'Post creato con successo!');
+        return redirect()->route('admin.categories.index')->with('message', 'La Categoria è stata creata con successo !');
     }
 
     /**
@@ -69,7 +69,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -81,7 +81,12 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $data = $request->validated();
+        $category->fill($data);
+        $category->slug = Str::slug($category->name);
+        $category->update();
+
+        return redirect()->route('admin.categories.index')->with('message', 'La Categoria è stata creata con successo !');
     }
 
     /**
